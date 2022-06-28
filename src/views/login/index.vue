@@ -2,6 +2,7 @@
   <div class="login-container">
     <el-form
       class="login-form"
+      ref="loginFormRef"
       :model="loginForm"
       :rules="loginRules"
     >
@@ -49,7 +50,8 @@
 
 <script setup>
 import { ref } from 'vue'
-// import { useStore } from 'vuex'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import { validatePassword } from './rules'
 // 数据源
 const loginForm = ref({
@@ -86,8 +88,26 @@ const onChangePwdType = () => {
 
 // 登录动作处理
 const loading = ref(false)
-// const store = useStore()
-const handleLogin = () => {}
+const loginFormRef = ref(null)
+const store = useStore()
+const router = useRouter()
+const handleLogin = () => {
+  loginFormRef.value.validate(valid => {
+    if (!valid) return
+    loading.value = true
+
+    store
+      .dispatch('user/login', loginForm.value)
+      .then(() => {
+        loading.value = false
+        router.push('/')
+      })
+      .catch(err => {
+        console.log(err)
+        loading.value = false
+      })
+  })
+}
 </script>
 
 <style lang="scss" scoped>
