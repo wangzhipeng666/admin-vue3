@@ -1,13 +1,13 @@
 import { login } from '@/api/sys'
 import md5 from 'md5'
-import { setItem } from '@/utils/storage'
+import { setItem, getItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
 import router from '@/router'
 
 export default {
   namespaced: true,
   state: () => ({
-    token: ''
+    token: getItem(TOKEN) || ''
   }),
   mutations: {
     setToken (state, token) {

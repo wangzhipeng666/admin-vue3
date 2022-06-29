@@ -7,6 +7,8 @@ import installElementPlus from './plugins/element'
 import './styles/index.scss'
 // 导入Icons
 import installIcons from '@/icons'
+// 引入权限控制模块
+import './permission'
 
 const app = createApp(App)
 installElementPlus(app)
