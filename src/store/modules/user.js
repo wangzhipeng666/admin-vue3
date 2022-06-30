@@ -1,6 +1,7 @@
 import { login, getUserInfo } from '@/api/sys'
 import md5 from 'md5'
-import { setItem, getItem } from '@/utils/storage'
+import { setItem, getItem, removeAllItem } from '@/utils/storage'
+import { setTimeStamp } from '@/utils/auth'
 import { TOKEN } from '@/constant'
 import router from '@/router'
 
@@ -33,6 +34,8 @@ export default {
           .then(data => {
             this.commit('user/setToken', data.token)
             router.push('/')
+            // 保存登录时间
+            setTimeStamp()
             resolve()
           })
           .catch(err => {
@@ -45,8 +48,18 @@ export default {
      */
     async getUserInfo (context) {
       const res = await getUserInfo()
-      this.commit('user/userInfo', res)
+      this.commit('user/setUserInfo', res)
       return res
+    },
+    /**
+     * 用户退出登录
+     */
+    logout () {
+      this.commit('user/setToken', '')
+      this.commit('user/setUserInfo', {})
+      removeAllItem()
+      router.push('/login')
     }
+
   }
 }
