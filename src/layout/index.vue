@@ -2,7 +2,6 @@
   <div class="app-wrapper">
     <!-- 左侧 menu -->
     <sidebar
-      id="guide-sidebar"
       class="sidebar-container"
       :style="{ backgroundColor: variables.menuBg }"
     />
