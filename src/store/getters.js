@@ -12,7 +12,8 @@ const getters = {
   /**
    * menu动态样式
    */
-  cssVar: state => variables
+  cssVar: state => variables,
+  sidebarOpened: state => state.app.sidebarOpened
 }
 
 export default getters

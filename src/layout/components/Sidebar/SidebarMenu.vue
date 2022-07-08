@@ -7,6 +7,7 @@
     :unique-opened="true"
     router
     :default-active="activeMenu"
+    :collapse="!$store.getters.sidebarOpened"
   >
     <sidebar-item
       v-for="item in routes"
