@@ -7,11 +7,11 @@
       >
         <!-- 不可点击项 -->
         <span v-if="index === breadcrumbData.length - 1" class="no-redirect">{{
-          item.meta.title
+          generateTitle(item.meta.title)
         }}</span>
         <!-- 可点击项 -->
         <a v-else class="redirect" @click.prevent="onLinkClick(item)">{{
-          item.meta.title
+          generateTitle(item.meta.title)
         }}</a>
       </el-breadcrumb-item>
     </transition-group>
@@ -19,6 +19,7 @@
 </template>
 
 <script setup>
+import { generateTitle } from '@/utils/i18n'
 import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
@@ -30,7 +31,6 @@ const getBreadcrumbData = () => {
   breadcrumbData.value = route.matched.filter(
     item => item.meta && item.meta.title
   )
-  console.log(breadcrumbData.value)
 }
 // 监听路由变化时触发
 watch(
