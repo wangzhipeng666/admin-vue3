@@ -39,7 +39,7 @@ const logoHeight = 44
     white-space: nowrap;
   }
   .el-avatar {
-    --el-avatar-background-color: none;
+    --el-avatar-bg-color: none;
   }
 }
 </style>

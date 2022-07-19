@@ -4,6 +4,7 @@
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
       <theme-picker class="right-menu-item hover-effect"></theme-picker>
+      <screenfull class="right-menu-item hover-effect" />
       <lang-select class="right-menu-item hover-effect" />
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
@@ -40,6 +41,7 @@ import Hamburger from '@/components/Hamburger'
 import Breadcrumb from '@/components/Breadcrumb'
 import LangSelect from '@/components/LangSelect'
 import ThemePicker from '@/components/ThemeSelect/index'
+import Screenfull from '@/components/Screenfull'
 
 const store = useStore()
 const logout = () => {
@@ -69,7 +71,7 @@ const logout = () => {
         margin-top: 5px;
         position: relative;
         .el-avatar {
-          --el-avatar-background-color: none;
+          --el-avatar-bg-color: none;
           margin-right: 12px;
         }
       }
@@ -99,5 +101,11 @@ const logout = () => {
       background: rgba(0, 0, 0, 0.1);
     }
   }
+}
+</style>
+
+<style lang="scss">
+.user-dropdown .el-dropdown-menu__item--divided:before {
+  margin: 0px !important;
 }
 </style>
